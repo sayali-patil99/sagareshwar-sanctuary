@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animals & Plants - Sagareshwar Sanctuary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a8e6cf, #dcedc1);
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      margin: 20px 0;
+      color: #0d5326;
+    }
+
+    .container {
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+      color: #0d5326;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      margin: 15px;
+      font-size: 20px;
+      color: #0d5326;
+    }
+
+    .card p {
+      margin: 0 15px 15px;
+      font-size: 15px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Animals & Plants of Sagareshwar Sanctuary</h1>
+
+  <div class="container">
+    <!-- Animals Section -->
+    <h2>Animals</h2>
+    <div class="grid">
+      <div class="card">
+        <!-- Updated Deer Image -->
+        <img src="deer.png" alt="Deer">
+        <h3>Deer</h3>
+        <p>Graceful deer roam freely in the grasslands of the sanctuary.</p>
+      </div>
+      <div class="card">
+        <img src="pecock.png" alt="Peacock">
+        <h3>Peacock</h3>
+        <p>Peacocks are often seen displaying their colorful feathers during the monsoon.</p>
+      </div>
+      <div class="card">
+        <img src="rabbit.png" alt="Rabbit">
+        <h3>Rabbit</h3>
+        <p>Small rabbits thrive in the green patches and meadows here.</p>
+      </div>
+      <div class="card">
+        <img src="monkey1.png" alt="Monkey">
+        <h3>Monkey</h3>
+        <p>Playful monkeys can be spotted in groups across the forested areas.</p>
+      </div>
+      <div class="card">
+        <img src="leopard.png" alt="Leopard">
+        <h3>Leopard</h3>
+        <p>Leopards are the main predators in the sanctuary, often seen in rocky areas.</p>
+      </div>
+      <div class="card">
+        <img src="bear.png" alt="Hibernator">
+        <h3>Hibernator</h3>
+        <p>Some animals in the sanctuary, like bears, hibernate during certain seasons.</p>
+      </div>
+      <div class="card">
+        <img src="black_duck.png" alt="Black Duck">
+        <h3>Black Duck</h3>
+        <p>Black ducks are commonly seen near the lakes and water bodies of the sanctuary.</p>
+      </div>
+      <div class="card">
+        <img src="fox.png" alt="Fox">
+        <h3>Fox</h3>
+        <p>Foxes are clever hunters and often spotted during the evenings.</p>
+      </div>
+      <div class="card">
+        <img src="wild-boar.png" alt="Wild Boar">
+        <h3>Wild Boar</h3>
+        <p>Wild boars roam the forest grounds in small herds.</p>
+      </div>
+      <div class="card">
+        <img src="eagle.png" alt="Eagle">
+        <h3>Eagle</h3>
+        <p>Majestic eagles soar above the sanctuary, watching over their prey.</p>
+      </div>
+    </div>
+
+    <!-- Plants Section -->
+    <h2>Plants & Flora</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="Banyan Tree.png" alt="Banyan Tree">
+        <h3>Banyan Tree</h3>
+        <p>Majestic banyan trees provide shelter and shade for many species.</p>
+      </div>
+      <div class="card">
+        <img src="Wildflowers.png" alt="Wildflowers">
+        <h3>Wildflowers</h3>
+        <p>Colorful seasonal wildflowers bloom, adding charm to the landscape.</p>
+      </div>
+      <div class="card">
+        <img src="Teak Trees.png" alt="Teak Trees">
+        <h3>Teak Trees</h3>
+        <p>Teak plantations are abundant, contributing to the greenery of the sanctuary.</p>
+      </div>
+      <div class="card">
+        <img src="neem tree.png" alt="Neem Tree">
+        <h3>Neem Tree</h3>
+        <p>Neem trees are known for their medicinal properties and resilience.</p>
+      </div>
+      <div class="card">
+        <img src="Lotus.png" alt="Lotus">
+        <h3>Lotus</h3>
+        <p>Lotus flowers bloom in the water bodies, symbolizing purity and beauty.</p>
+      </div>
+      <div class="card">
+        <img src="Bamboo.png" alt="Bamboo">
+        <h3>Bamboo</h3>
+        <p>Bamboo groves are spread across the sanctuary, supporting the ecosystem.</p>
+      </div>
+      <div class="card">
+        <img src="Mango.png" alt="Mango Tree">
+        <h3>Mango Tree</h3>
+        <p>Mango trees are abundant and provide fruits for both animals and humans.</p>
+      </div>
+      <div class="card">
+        <img src="rose.png" alt="Rose">
+        <h3>Rose</h3>
+        <p>Roses add beauty and fragrance, enhancing the flora of the sanctuary.</p>
+      </div>
+      <div class="card">
+        <img src="tulsi.png" alt="Tulsi">
+        <h3>Tulsi</h3>
+        <p>Tulsi is a sacred plant with medicinal value, found near many forest temples.</p>
+      </div>
+      <div class="card">
+        <img src="cactus.png" alt="Cactus">
+        <h3>Cactus</h3>
+        <p>Cactus species survive in dry patches of the sanctuary, storing water.</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
