@@ -1,0 +1,170 @@
+<%@ page import="java.sql.*" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Donor Entry Form</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 40px;
+      background: url('doner2.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2d3436;
+      margin-bottom: 30px;
+      background: rgba(255, 255, 255, 0.7);
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    .heading-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.8);
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #2d3436;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    textarea {
+      resize: vertical;
+      height: 80px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #0984e3;
+      border: none;
+      color: white;
+      font-size: 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0652dd;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div class="heading-container">
+    <h2>Donor Data</h2>
+</div>
+
+<div class="form-container">
+
+<%
+    String msg = "";
+    if(request.getMethod().equalsIgnoreCase("POST")) {
+        String visitor_id = request.getParameter("visitor_id");
+        String name = request.getParameter("name");
+        String contact_no = request.getParameter("contact_no");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        String amount = request.getParameter("amount");
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/sanctuary", "root", "");
+
+            String sql = "INSERT INTO donors(visitor_id, name, contact_no, email, address, amount) VALUES(?, ?, ?, ?, ?, ?)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, visitor_id);
+            ps.setString(2, name);
+            ps.setString(3, contact_no);
+            ps.setString(4, email);
+            ps.setString(5, address);
+            ps.setString(6, amount);
+
+            int i = ps.executeUpdate();
+            if(i > 0) {
+                msg = "<p class='message'>Donor data submitted successfully!</p>";
+            } else {
+                msg = "<p class='error'>Error! Please try again.</p>";
+            }
+
+        } catch(Exception e) {
+            msg = "<p class='error'>Error: " + e.getMessage() + "</p>";
+        } finally {
+            try { if(ps != null) ps.close(); if(conn != null) conn.close(); } catch(Exception ex) {}
+        }
+    }
+%>
+
+<%= msg %>
+
+    <form method="post" action="">
+      <label for="visitor_id">Visitor ID</label>
+      <input type="text" id="visitor_id" name="visitor_id" required>
+
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="contact_no">Contact Number</label>
+      <input type="tel" id="contact_no" name="contact_no" pattern="[0-9]{10}" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="address">Address</label>
+      <textarea id="address" name="address" required></textarea>
+
+      <label for="amount">Donation Amount</label>
+      <input type="number" id="amount" name="amount" min="1" required>
+
+      <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
