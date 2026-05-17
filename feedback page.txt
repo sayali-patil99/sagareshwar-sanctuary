@@ -1,0 +1,131 @@
+<%@ page import="java.sql.*" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form - JSP</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            min-height: 100vh;
+            background: #e0e7ff url('feedback1.png') no-repeat center;
+            background-size: cover;
+            padding: 20px;
+        }
+        .feedback-container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 100%;
+            margin-right: 20px;
+        }
+        .feedback-container h2 { text-align: center; color: #1e40af; margin-bottom: 20px; }
+        .feedback-container label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .feedback-container input[type="text"],
+        .feedback-container input[type="email"],
+        .feedback-container select,
+        .feedback-container textarea {
+            width: 100%; padding: 10px; margin-bottom: 15px;
+            border-radius: 6px; border: 1px solid #ccc; font-size: 14px;
+        }
+        .feedback-container textarea { resize: vertical; }
+        .button-group { display: flex; justify-content: space-between; }
+        .button-group button {
+            padding: 10px 20px; font-size: 14px; border-radius: 6px; border: none; cursor: pointer;
+        }
+        .submit-btn { background-color: #22c55e; color: white; }
+        .cancel-btn { background-color: #ef4444; color: white; }
+        .button-group button:hover { opacity: 0.9; }
+        @media (max-width: 768px) { body { justify-content: center; } }
+        .success { color: green; text-align: center; margin-bottom: 15px; }
+        .error { color: red; text-align: center; margin-bottom: 15px; }
+        .info { color: orange; text-align: center; margin-bottom: 15px; }
+    </style>
+    <script>
+        function cancelForm() {
+            var messageDiv = document.getElementById("message");
+            messageDiv.innerHTML = "<p class='info'>Form cancelled!</p>";
+            document.getElementById("feedbackForm").reset();
+        }
+    </script>
+</head>
+<body>
+
+<div class="feedback-container">
+    <h2>Feedback Form</h2>
+
+    <div id="message">
+        <%
+            String message = "";
+            if(request.getMethod().equalsIgnoreCase("POST")) {
+                String name = request.getParameter("name");
+                String email = request.getParameter("email");
+                String rating = request.getParameter("rating");
+                String comments = request.getParameter("comments");
+
+                Connection conn = null;
+                PreparedStatement ps = null;
+
+                try {
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/sanctuary", "root", "");
+
+                    String sql = "INSERT INTO feedback(name, email, rating, comments) VALUES(?, ?, ?, ?)";
+                    ps = conn.prepareStatement(sql);
+                    ps.setString(1, name);
+                    ps.setString(2, email);
+                    ps.setString(3, rating);
+                    ps.setString(4, comments);
+
+                    int i = ps.executeUpdate();
+                    if(i > 0) {
+                        message = "<p class='success'>Thank you! Your feedback has been submitted.</p>";
+                    } else {
+                        message = "<p class='error'>Error! Please try again.</p>";
+                    }
+
+                } catch(Exception e) {
+                    message = "<p class='error'>Error: " + e.getMessage() + "</p>";
+                } finally {
+                    try { if(ps != null) ps.close(); if(conn != null) conn.close(); } catch(Exception ex) {}
+                }
+            }
+        %>
+        <%= message %>
+    </div>
+
+    <form id="feedbackForm" action="" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="rating">Rating:</label>
+        <select id="rating" name="rating">
+            <option value="Excellent">Excellent</option>
+            <option value="Very Good">Very Good</option>
+            <option value="Good">Good</option>
+            <option value="Average">Average</option>
+            <option value="Poor">Poor</option>
+        </select>
+
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="4" placeholder="Write your comments here"></textarea>
+
+        <div class="button-group">
+            <button type="submit" class="submit-btn">Submit</button>
+            <button type="button" class="cancel-btn" onclick="cancelForm()">Cancel</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
