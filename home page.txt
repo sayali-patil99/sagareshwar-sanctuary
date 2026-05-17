@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wildlife Donation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #000; 
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: #111;
+      box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+    }
+    header .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: bold;
+      color: #fbb040;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1561948955-570f4f6b0de7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1600') center/cover no-repeat;
+      min-height: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      margin: 0;
+    }
+    .hero h1 span {
+      color: #fbb040;
+    }
+
+    /* Hero subtitle */
+    .hero p {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #ffffff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+
+    /* Login buttons row */
+    .login-buttons {
+      margin-top: 20px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+    .login-buttons button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background: #fbb040;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .login-buttons button:hover {
+      background: #f15a24;
+      color: #fff;
+    }
+    .login-buttons button a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Hero message */
+    .hero-message {
+      margin-top: 20px;
+      font-size: 32px;
+      font-family: 'Pacifico', cursive;
+      color: #ffffff;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    }
+
+    /* Spots caption */
+    .spots-caption {
+      margin-top: 30px;
+      font-size: 22px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      color: #ff1493;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+
+    /* Temples & Points Section */
+    .places-section {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+    .place-card {
+      background: #111;
+      color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+      transition: transform 0.3s;
+    }
+    .place-card:hover {
+      transform: translateY(-5px) scale(1.05);
+    }
+    .place-card img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      filter: brightness(0.7);
+      transition: all 0.3s;
+    }
+    .place-card p {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #fbb040;
+      font-weight: 700;
+    }
+
+    /* Donate Section */
+    .donate-section {
+      padding: 50px 20px;
+      text-align: center;
+      background: #000;
+    }
+    .opening-hours {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fbb040;
+      margin-bottom: 20px;
+    }
+    .opening-hours span {
+      display: block;
+      font-size: 20px;
+      font-weight: normal;
+      color: #fff;
+      margin-top: 5px;
+    }
+
+    .donate-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      margin-bottom: 40px;
+      color: #fbb040;
+    }
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .card {
+      background: #111;
+      width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+      text-align: left;
+      color: #fff;
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      filter: brightness(0.7);
+    }
+    .card .content {
+      padding: 20px;
+    }
+    .card .content h3 {
+      margin: 0 0 10px;
+      font-family: 'Playfair Display', serif;
+      color: #fbb040;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">WildLife</div>
+</header>
+
+<section class="hero">
+  <div>
+    <h1>Welcome To Green Haven <span>Sagareshwar Sanctuary</span></h1>
+    <p>...Preserving Wildlife · Protecting Nature · Inspiring Hearts...</p>
+
+    <!-- Login Buttons -->
+    <div class="login-buttons">
+      <button><a href="Admin login.jsp">Admin Login</a></button>
+      <button><a href="staff.jsp">Staff Login</a></button>
+      <button><a href="visitor.jsp">Visitor Login</a></button>
+    </div>
+
+    <!-- Hero Message -->
+    <div class="hero-message">
+      Enjoy the wonderful day with your family
+    </div>
+
+    <!-- Spots Caption -->
+    <div class="spots-caption">
+      These are the spots you can travel, look around, and enjoy
+    </div>
+
+    <!-- Temples & Points -->
+    <div class="places-section">
+      <div class="place-card">
+        <img src="sagareshwar.jpeg" alt="Sagareshwar Temple">
+        <p>Sagareshwar</p>
+      </div>
+      <div class="place-card">
+        <img src="lingeshwar.jpeg" alt="Lingeshwar Temple">
+        <p>Lingeshwar</p>
+      </div>
+      <div class="place-card">
+        <img src="kamalbhairav.jpeg" alt="Kamalbhairav">
+        <p>Kamalbhairav</p>
+      </div>
+      <div class="place-card">
+        <img src="VeerBhadra.jpeg" alt="Veerbhadr">
+        <p>Veerbhadr</p>
+      </div>
+      <div class="place-card">
+        <img src="KadayatilMaruti.jpeg" alt="Kadyatil Maruthi">
+        <p>Kadyatil Maruthi</p>
+      </div>
+      <div class="place-card">
+        <img src="ChatriBangala.jpeg" alt="Chhatri Bangla">
+        <p>Chhatri Bangla</p>
+      </div>
+      <div class="place-card">
+        <img src="Dak_bangala.jpeg" alt="Daak Bangla">
+        <p>Daak Bangla</p>
+      </div>
+      <div class="place-card">
+        <img src="MalDhonda (1).jpeg" alt="Mal Dhonda">
+        <p>Maldhonda</p>
+      </div>
+      <div class="place-card">
+        <img src="Kirloskar_point.jpeg" alt="Kirloskar Point">
+        <p>Kirloskar Point</p>
+      </div>
+      <div class="place-card">
+        <img src="Eco_Point.jpeg" alt="Eco Point">
+        <p>Eco Point</p>
+      </div>
+      <div class="place-card">
+        <img src="PhetaUdi.jpeg" alt="Pheta Udi Point">
+        <p>Pheta Udi Point</p>
+      </div>
+      <div class="place-card">
+        <img src="Z_point.jpeg" alt="Z Point">
+        <p>Z Point</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="donate-section">
+  <!-- Opening Hours -->
+  <div class="opening-hours">
+    Opening Hours
+    <span>Monday To Sunday<br>9:00 AM To 5:00 PM</span>
+  </div>
+
+  <h2>Donate for WildLife</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="leopard.png" alt="Leopard">
+      <div class="content">
+        <h3>Leopard</h3>
+      </div>
+    </div>
+    <div class="card">
+      <img src="deer.png" alt="Deer">
+      <div class="content">
+        <h3>Deer</h3>
+      </div>
+    </div>
+    <div class="card">
+      <img src="pecock_1.png" alt="Peacock">
+      <div class="content">
+        <h3>Peacock</h3>
+      </div>
+    </div>
+    <div class="card">
+      <img src="rabbit.png" alt="Rabbit">
+      <div class="content">
+        <h3>Rabbit</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
